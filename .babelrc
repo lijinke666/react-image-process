@@ -1,0 +1,31 @@
+{
+  "presets": [       
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "react",
+    "stage-1"
+  ],
+  "env":{
+    "test":{
+      "presets":[
+        "es2015",
+        "stage-1",
+        "react"
+      ],
+      "plugins":[
+        "transform-es2015-modules-commonjs",
+        "dynamic-import-node"
+      ]
+    }
+  },
+  "plugins": [
+    "transform-es2015-modules-commonjs",
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "react-hot-loader/babel"
+  ]
+}
