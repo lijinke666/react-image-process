@@ -39,15 +39,10 @@ module.exports = (env) => {
                     ]
                 },
                 {
-                    test: /\.(eot|ttf|svg|woff|woff2)$/,
-                    use: [
-                        {
-                            loader: "file-loader",
-                            options: {
-                                name: "fonts/[name][hash:8].[ext]",
-                            },
-                        },
-                    ],
+                    test: /\.(jpg|jpeg|png|gif|cur|ico)$/,
+                    use: [{
+                        loader: 'file-loader'
+                    }]
                 },
             ]
         },
@@ -66,7 +61,10 @@ module.exports = (env) => {
             async: "commonjs async"
         },
         devServer: {
-            contentBase: path.join(__dirname, "../example/"),
+            contentBase: [
+                path.join(__dirname, "../example/"),
+                path.join(__dirname,"../assetsImg/")
+            ],
             compress: true,
             inline: true,
             port: PORT,
