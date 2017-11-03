@@ -40,23 +40,24 @@ export default class ReactImageMagician extends PureComponent {
     )
   }
   //base64
-  base64Handle = async () => {
-    console.log(1);
+  base64Handle = () => {
     const { src } = this.props.children.props
-    const { cover, ext } = await this.createImageNode(src)
-    this.ctx.drawImage(img, 0, 0, img.width, img.height)
-    const base64URL = this.canvas.toDataURL(`image/${ext}`)
-    console.log(base64URL)
-
+    console.log(src);
+    this.createImageNode(src).then(({ cover, ext })=>{
+      console.log(cover);
+      this.ctx.drawImage(cover, 0, 0, cover.width, cover.height)
+      const base64URL = this.canvas.toDataURL(`image/${ext}`)
+      console.log(base64URL)
+    })
   }
   //图片处理
-  imageHandle = async (mode) => {
+  imageHandle = (mode) => {
     switch (mode) {
-      case MODE['base64']['key']: await this.base64Handle()
+      case MODE['base64']['key']: this.base64Handle()
         break
-      case MODE['clip']['key']: await this.clipHandle()
+      case MODE['clip']['key']: this.clipHandle()
         break
-      default: await this.base64Handle()
+      default: this.base64Handle()
         break
     }
   }
@@ -70,24 +71,26 @@ export default class ReactImageMagician extends PureComponent {
   }
 
   createImageNode = (cover, canvasWidth, canvasHeight) => {
+    const coverType = typeof (cover)
+    const ext = this.getCoverExt(cover)
     return new Promise((res, rej) => {
-      const coverType = typeof (cover)
-      const ext = this.getCoverExt(cover)
       if (Object.is(coverType, 'object')) {
         this.setCanvasWidth(canvasWidth, canvasHeight)
         res({ cover, ext })
       } else if (Object.is(coverType, 'string')) {
         const img = new Image()
+        img.crossOrigin = "Anonymous"
         img.src = cover
         img.onload = () => {
           this.setCanvasWidth(canvasWidth || img.width, canvasHeight || img.height)
           res({ cover: img, ext })
         }
-        img.onerror = (e) => rej(e)
+        img.onerror = (e) => { rej(e.message) }
       } else {
-        rej('The cover options is not a String of Object\n')
+        throw new Error('The cover options is not a String of Object\n')
       }
     })
+
   }
   componentWillMount() {
 

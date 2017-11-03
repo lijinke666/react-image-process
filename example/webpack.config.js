@@ -61,14 +61,9 @@ module.exports = (env) => {
             async: "commonjs async"
         },
         devServer: {
-            contentBase: [
-                path.join(__dirname, "../example/"),
-                path.join(__dirname,"../assetsImg/")
-            ],
-            compress: true,
+            contentBase: path.join(__dirname, "../example"),
             inline: true,
             port: PORT,
-            publicPath: "/dist/",
             historyApiFallback: true,
             stats: {
                 color: true,
@@ -79,6 +74,8 @@ module.exports = (env) => {
             }
         },
         plugins: [
+            new webpack.NoErrorsPlugin(),
+            new webpack.HotModuleReplacementPlugin(),
             new OpenBrowserPlugin({
                 url: `http:${HOST}:${PORT}/`
             })
