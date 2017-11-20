@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import ReactImageMagician from "../src"
 import Message from "rc-message"
+import "rc-message/assets/index.css"
 
 import demoImg from "./demo.jpg"
 

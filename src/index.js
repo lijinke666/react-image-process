@@ -34,9 +34,11 @@ export default class ReactImageMagician extends PureComponent {
     } = this.props
 
     const _className = `${mainPrefix}-${mode}`
+    console.log(children,'11')
 
     return (
-      <div className={_className} key={_className}>{children}</div>
+      "11"
+      // <span className={_className} key={_className}>{children}</span>
     )
   }
   //base64

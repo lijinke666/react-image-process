@@ -39,10 +39,15 @@ module.exports = (env) => {
                     ]
                 },
                 {
-                    test: /\.(jpg|jpeg|png|gif|cur|ico)$/,
-                    use: [{
-                        loader: 'file-loader'
-                    }]
+                    test: /\.(eot|ttf|svg|woff|woff2)$/,
+                    use: [
+                        {
+                            loader: "file-loader",
+                            options: {
+                                name: "fonts/[name][hash:8].[ext]",
+                            },
+                        },
+                    ],
                 },
             ]
         },
@@ -61,9 +66,11 @@ module.exports = (env) => {
             async: "commonjs async"
         },
         devServer: {
-            contentBase: path.join(__dirname, "../example"),
+            contentBase: path.join(__dirname, "../example/"),
+            compress: true,
             inline: true,
             port: PORT,
+            publicPath: "/dist/",
             historyApiFallback: true,
             stats: {
                 color: true,
@@ -74,8 +81,6 @@ module.exports = (env) => {
             }
         },
         plugins: [
-            new webpack.NoErrorsPlugin(),
-            new webpack.HotModuleReplacementPlugin(),
             new OpenBrowserPlugin({
                 url: `http:${HOST}:${PORT}/`
             })
