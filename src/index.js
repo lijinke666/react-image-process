@@ -1,67 +1,98 @@
 
 /**
+ * @name react-image-magician
  * @version 0.1.0
  */
 
 import React, { PureComponent } from "react"
 import PropTypes from "prop-types"
+import classnames from "classnames"
+import {
+  createModeName
+} from "./decorator"
 
-export const MODE = {
-  base64: {
-    key: "base64",
-    desc: "base64"
-  },
-  clip: {
-    key: "clip",
-    desc: "裁剪"
-  }
-}
+export const MODE = ['base64', 'clip']
+
 const mainPrefix = 'react-image-magician'
+
+@createModeName(MODE)
 export default class ReactImageMagician extends PureComponent {
   state = {
     compressImageSrc: ""                    //处理后的图片
   }
+  constructor(props) {
+    super(props)
+  }
   static defaultProps = {
-    mode: MODE['base64']['key']
+    mode: MODE[0]
   }
   static PropTypes = {
-    mode: PropTypes.oneOf(Object.values(MODE).map(({ key }) => key))
+    mode: PropTypes.oneOf(MODE)
   }
   render() {
     const {
       mode,
-      children
+      children,
+      style,
+      className
     } = this.props
 
     const _className = `${mainPrefix}-${mode}`
-    console.log(children,'11')
 
     return (
-      "11"
-      // <span className={_className} key={_className}>{children}</span>
+      <span
+        className={classnames(className, _className)}
+        key={_className}
+        ref={node => this.node = node}
+        {...style}
+      >
+        {children}
+      </span>
     )
   }
   //base64
-  base64Handle = () => {
-    const { src } = this.props.children.props
-    console.log(src);
-    this.createImageNode(src).then(({ cover, ext })=>{
-      console.log(cover);
+  base64Handler = (src) => {
+    return this.createImageNode(src).then(({ cover, ext }) => {
       this.ctx.drawImage(cover, 0, 0, cover.width, cover.height)
-      const base64URL = this.canvas.toDataURL(`image/${ext}`)
-      console.log(base64URL)
+      return this.canvas.toDataURL(`image/${ext}`)
     })
+  }
+  /**
+     * 裁剪图片
+    * @param {object} Options 
+    * @param {String} cover 图片 必选 
+    * @param {Number} scale 缩放比例  非必选 默认 1.0 不缩放 
+    * @param {Array} coordinate 裁剪坐标  必选  [[x1,y1],[x2,y2]]
+    * @return 裁剪后的图片节点
+    */
+  clipHandler = (src) => {
+    console.log(1)
+    const { scale, coordinate } = this.props
+
+    const [x1, y1] = coordinate[0]
+    const [x2, y2] = coordinate[1]
+
+    const clipWidth = Math.abs(x2 - x1)
+    const clipHeight = Math.abs(y2 - y1)
+
+    this.createImageNode(src, clipWidth, clipHeight).then(({ cover, ext }) => {
+      this.ctx.drawImage(cover, x1 / scale, y1 / scale, clipWidth / scale, clipHeight / scale, 0, 0, clipWidth, clipHeight)
+      return this.canvas.toDataURL(`image/${ext}`)
+    })
+  }
+  baseHandler = (mode) => {
+    try {
+      const { src } = this.props.children.props
+      this[`${mode}Handler`](src).then(url => {
+        this.currentImgNode.src = url
+      })
+    } catch (error) {
+      console.error(`[${mode}Handler]:`, error.message)
+    }
   }
   //图片处理
   imageHandle = (mode) => {
-    switch (mode) {
-      case MODE['base64']['key']: this.base64Handle()
-        break
-      case MODE['clip']['key']: this.clipHandle()
-        break
-      default: this.base64Handle()
-        break
-    }
+      this.baseHandler(this._MODE_[mode])
   }
   getCoverExt = (cover) => {
     if (!Object.is(typeof (cover), 'string')) throw new Error('cover it must be "string"')
@@ -89,7 +120,7 @@ export default class ReactImageMagician extends PureComponent {
         }
         img.onerror = (e) => { rej(e.message) }
       } else {
-        throw new Error('The cover options is not a String of Object\n')
+        throw new Error('The cover options is not a String or Object\n')
       }
     })
 
@@ -97,13 +128,17 @@ export default class ReactImageMagician extends PureComponent {
   componentWillMount() {
 
   }
+  componentWillUnmount() {
+    this.canvas = this.ctx = this.currentImgNode = this.node = undefined
+  }
   componentWillReceiveProps(prevProps, nextProps) {
     console.log(prevProps)
   }
   componentDidMount() {
-    const { mode } = this.props
+    const { mode, children } = this.props
     this.canvas = document.createElement('canvas')
     this.ctx = this.canvas.getContext('2d')
+    this.currentImgNode = this.node.querySelector('img')
     this.imageHandle(mode)
   }
   componentDidCatch(error, info) {

@@ -26,6 +26,7 @@
     "transform-es2015-modules-commonjs",
     "transform-object-rest-spread",
     "transform-class-properties",
+    "transform-decorators-legacy",
     "react-hot-loader/babel"
   ]
 }
