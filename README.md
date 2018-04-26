@@ -1,7 +1,8 @@
 # react-image-magician
-[![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/react-image-magician)
-[![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/react-image-magician)
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-image-magician)
+> in development
+[![npm](https://img.shields.io/npm/dm/react-image-magician.svg?style=flat-square)](https://www.npmjs.com/package/react-image-magician)
+[![npm version](https://img.shields.io/npm/v/react-image-magician.svg?style=flat-square)](https://badge.fury.io/js/react-image-magician)
+[![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
 > A image process component for react,  like compressed image,clip image, add watermarking of image
 
 
@@ -14,7 +15,7 @@ npm install react-image-magician --save
 
 ## Screenshots
 
-![lightTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
+<!-- ![lightTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png) -->
 
 
 
