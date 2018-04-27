@@ -1,8 +1,10 @@
 # react-image-magician
 > in development
+
 [![npm](https://img.shields.io/npm/dm/react-image-magician.svg?style=flat-square)](https://www.npmjs.com/package/react-image-magician)
 [![npm version](https://img.shields.io/npm/v/react-image-magician.svg?style=flat-square)](https://badge.fury.io/js/react-image-magician)
 [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
+
 > A image process component for react,  like compressed image,clip image, add watermarking of image
 
 
@@ -30,7 +32,9 @@ import ReactDOM from "react-dom"
 import ReactImageMagician from "react-image-magician"
 
 ReactDOM.render(
-    <ReactImageMagician {...options} />,
+    <ReactImageMagician mode="base64">
+        <img src="YOUR_IMG_URL"/>
+    </ReactImageMagician>,
     document.getElementById('root')
 )
 ```
