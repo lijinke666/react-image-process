@@ -1,5 +1,5 @@
 {
-  "presets": [       
+  "presets": [
     [
       "es2015",
       {
@@ -9,17 +9,10 @@
     "react",
     "stage-1"
   ],
-  "env":{
-    "test":{
-      "presets":[
-        "es2015",
-        "stage-1",
-        "react"
-      ],
-      "plugins":[
-        "transform-es2015-modules-commonjs",
-        "dynamic-import-node"
-      ]
+  "env": {
+    "test": {
+      "presets": ["es2015", "stage-1", "react"],
+      "plugins": ["transform-es2015-modules-commonjs", "dynamic-import-node"]
     }
   },
   "plugins": [
@@ -27,6 +20,14 @@
     "transform-object-rest-spread",
     "transform-class-properties",
     "transform-decorators-legacy",
-    "react-hot-loader/babel"
+    [
+      "transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": "babel-runtime"
+      }
+    ]
   ]
 }
