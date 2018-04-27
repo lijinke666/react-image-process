@@ -50,8 +50,8 @@ export default class ReactImageMagician extends PureComponent {
    * @param {String | Object} options.cover cover url | image element node   The next cover parameter is the same as this.
    * @return base64 data
    */
-  base64Handler = async (...options) => {
-    return await this.photoMagician.toBase64Url({ ...options });
+  base64Handler = async (cover) => {
+    return await this.photoMagician.toBase64Url({ cover });
   };
 
   /**
@@ -63,34 +63,45 @@ export default class ReactImageMagician extends PureComponent {
    * @param {Array} options.coordinate [[x1,y1],[x2,y2]]
    * @return image node
    */
-  clipHandler = async (...options) => {
-    return await this.photoMagician.clipImage({ ...options });
+  clipHandler = async (cover,params) => {
+    console.log(cover,params);
+    return await this.photoMagician.clipImage({cover,...params });
   };
-  baseHandler = async mode => {
+  baseHandler = async (mode,options) => {
     try {
-      const { src } = this.props.children.props;
-      const url = await this[`${mode}Handler`](src);
-      this.currentImgNode.src = url;
-    } catch (error) {
-      console.error(`[${mode}Handler-error]:`, error.message);
+      const {children,...params} = options
+      const images = Array.isArray(children)
+        ? [...options.children]
+        : [options.children];
+
+      for (let [
+        i,
+        {
+          props: { src }
+        }
+      ] of images.entries()) {
+        const url = await this[`${mode}Handler`](src,params);
+        this.currentImgNodes[i].src = url;
+      }
+    } catch (err) {
+      console.error(`[${mode}Handler-error]:`, err);
     }
   };
   //图片处理
-  imageHandle = async mode => {
-    await this.baseHandler(this._MODE_[mode]);
+  imageHandle = async ({mode,...options}) => {
+    await this.baseHandler(this._MODE_[mode],options);
   };
   componentWillMount() {}
   componentWillUnmount() {
     this.photoMagician = undefined;
   }
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return null;
-  }
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   return null;
+  // }
   componentDidMount() {
-    const { mode, children } = this.props;
-    this.currentImgNode = this.node.querySelector("img");
+    this.currentImgNodes = this.node.querySelectorAll("img");
     this.photoMagician = new photoMagician();
-    this.imageHandle(mode);
+    this.imageHandle(this.props);
   }
   componentDidCatch(error, info) {
     console.error("error", error, info);

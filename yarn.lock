@@ -5993,9 +5993,9 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/performance-now/download/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
 
-photo-magician@^0.1.1:
-  version "0.1.1"
-  resolved "http://registry.npm.taobao.org/photo-magician/download/photo-magician-0.1.1.tgz#6a5c116962cc030e4e6651fab0ee76762ec7d656"
+photo-magician@^0.2.0:
+  version "0.2.0"
+  resolved "http://registry.npm.taobao.org/photo-magician/download/photo-magician-0.2.0.tgz#7bcccb4f3f9adc4a0437915d3b791ebace559a32"
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"

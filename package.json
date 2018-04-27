@@ -41,7 +41,7 @@
   ],
   "dependencies": {
     "classnames": "^2.2.5",
-    "photo-magician": "^0.1.1",
+    "photo-magician": "^0.2.0",
     "prop-types": "^15.6.0"
   },
   "devDependencies": {
