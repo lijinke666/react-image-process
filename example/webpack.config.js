@@ -74,7 +74,6 @@ module.exports = (env) => {
         },
         devServer: {
             contentBase: path.join(__dirname, "../example/"),
-            compress: true,
             inline: true,
             port: PORT,
             publicPath: "/dist/",
