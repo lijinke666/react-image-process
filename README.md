@@ -60,8 +60,6 @@ Support multiple Images
 
 ## API
 
-> Base API
-
 | Property      | Description                                                                                                                      | Type                   | Default                |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------- |
 | mode          | can be set to `base64` `clip` `compress` `rotate` `waterMark` `filter` `primaryColor`                                            | `string`               | `base64`               |
