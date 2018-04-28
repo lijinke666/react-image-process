@@ -6,7 +6,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { hot } from "react-hot-loader";
 import photoMagician from "photo-magician";
 import { name } from "../package.json";
 
@@ -36,7 +35,7 @@ const FILTER_TYPE = Object.values(FILTER_TYPE_NAME);
 
 const mainPrefix = "react-image-process";
 
-class ReactImageProcess extends PureComponent {
+export default class ReactImageProcess extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -188,6 +187,7 @@ class ReactImageProcess extends PureComponent {
   componentWillUnmount() {
     this.photoMagician = undefined;
     this.currentImgNodes = undefined;
+    this.node = undefined;
   }
   componentDidMount() {
     this.currentImgNodes = this.node.querySelectorAll("img");
@@ -195,5 +195,3 @@ class ReactImageProcess extends PureComponent {
     this.imageHandle(this.props);
   }
 }
-
-export default hot(module)(ReactImageProcess);

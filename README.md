@@ -1,7 +1,5 @@
 # react-image-process
 
-> in development
-
 [![npm](https://img.shields.io/npm/dm/react-image-process.svg?style=flat-square)](https://www.npmjs.com/package/react-image-process)
 [![npm version](https://img.shields.io/npm/v/react-image-process.svg?style=flat-square)](https://badge.fury.io/js/react-image-process)
 [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
@@ -26,48 +24,61 @@ npm install react-image-process --save
 
 ## Screenshots
 
-<!-- ![lightTheme](https://github.com/lijinke666/react-image-process/blob/master/assetsImg/screenshots.png) -->
+![lightTheme](https://github.com/lijinke666/react-image-process/blob/master/assetsImg/screenshot.png)
 
 ## Example
 
-> ONLINE example : [https://lijinke666.github.io/react-image-process/](https://lijinke666.github.io/react-image-process/)
+online example : [https://lijinke666.github.io/react-image-process/](https://lijinke666.github.io/react-image-process/)
 
 ## Usage
 
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import ReactImageMagician from "react-image-magician";
+import ReactImageProcess from "react-image-process";
 
 const onComplete = data => {
   console.log("data:", data);
 };
 
 ReactDOM.render(
-  <ReactImageMagician 
-    mode="base64" 
-    onComplete={onComplete}
-    >
+  <ReactImageProcess mode="base64" onComplete={onComplete}>
     <img src="YOUR_IMG_URL" />
-  </ReactImageMagician>,
+  </ReactImageProcess>,
   document.getElementById("root")
 );
 ```
 
-Suport multipart Images
+Support multiple Images
 
 ```jsx
-<ReactImageMagician 
-    mode="compress" 
-    quality={0.2}
-    onComplete={onComplete}
->
+<ReactImageProcess mode="compress" quality={0.2} onComplete={onComplete}>
   <img src="YOUR_IMG_URL" alt="compress" className="example-img" />
   <img src="YOUR_IMG_URL" alt="compress" className="example-img" />
-</ReactImageMagician>
+</ReactImageProcess>
 ```
 
 ## API
+
+> Base API
+
+| Property      | Description                                                                                                                      | Type                   | Default                |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------- |
+| mode          | can be set to `base64` `clip` `compress` `rotate` `waterMark` `filter` `primaryColor`                                            | `string`               | `base64`               |
+| onComplete    | The callback after trans complete conversion                                                                                     | function(base64Data){} | `-`                    |
+| scale         | When the mode is equal to 'clip', the zoom scale of the image.                                                                   | `number`               | `1.0`                  |
+| coordinate    | When the mode is equal to 'clip', coordinate of the image. like `[[x1,y1],[x2,y2]]`, if mode equal to `waterMark` like `[x1,y1]` | `number[]`             | `-`                    |
+| quality       | When the mode is equal to 'compress', quality of the image.                                                                      | `number`               | `0.92`                 |
+| rotate        | When the mode is equal to 'rotate', rotate deg of the image.                                                                     | `number`               | `-`                    |
+| waterMark     | When the mode is equal to 'waterMark', can be set to `image` or `text`                                                           | `string|ReactNode`     | `-`                    |
+| waterMarkType | When the mode is equal to 'waterMark', can be set to `image` or `text`                                                           | `string`               | `text`                 |
+| fontBold      | When the mode is equal to 'waterMark' and waterMark equal to `text` ,the font is bold.                                           | `boolean`              | `false`                |
+| fontSize      | When the mode is equal to 'waterMark' and waterMark equal to `text` ,the font size                                               | `number`               | `20`                   |
+| fontColor     | When the mode is equal to 'waterMark' and waterMark equal to `text` ,the font color                                              | `string`               | `rgba(255,255,255,.5)` |
+| width         | When the mode is equal to 'waterMark' and waterMark equal to `image` ,the water width                                            | `number`               | `50`                   |
+| height        | When the mode is equal to 'waterMark' and waterMark equal to `image` ,the water height                                           | `number`               | `50`                   |
+| opacity       | When the mode is equal to 'waterMark' and waterMark equal to `image` ,the water opacity range [0-1]                              | `number`               | `0.5`                  |
+| filterType    | When the mode is equal to 'filter', can be set to `vintage` `blackWhite` `relief` `blur`                                         | `string`               | `vintage`              |
 
 ## Development
 
@@ -108,4 +119,4 @@ npm start
 
 ## License
 
-[MIT](https://github.com/lijinke666/react-image-process/blob/master/LICENCE)
+[MIT](https://github.com/lijinke666/react-image-process/blob/master/LICENSE)

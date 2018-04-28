@@ -178,8 +178,8 @@ class Demo extends React.PureComponent {
               })
             }
           />
-          {primaryColor}
         </ReactImageMagician>
+        <div style={{textAlign:"center"}}>{primaryColor}</div>
 
         <h2>waterMark</h2>
         <ReactImageMagician
