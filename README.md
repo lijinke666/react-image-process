@@ -30,6 +30,8 @@ npm install react-image-process --save
 
 online example : [https://lijinke666.github.io/react-image-process/](https://lijinke666.github.io/react-image-process/)
 
+[Source Code](https://github.com/lijinke666/react-image-process/blob/master/example/example.js)
+
 ## Usage
 
 ```jsx
