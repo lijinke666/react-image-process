@@ -7561,6 +7561,14 @@ react-icons@^2.2.5:
   dependencies:
     react-icon-base "2.1.0"
 
+react-image-process@^0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/react-image-process/download/react-image-process-0.1.0.tgz#e8ddc4731091f00da0c7e85902483242de89ec39"
+  dependencies:
+    classnames "^2.2.5"
+    photo-magician "^0.2.0"
+    prop-types "^15.6.0"
+
 react-is@^16.3.2:
   version "16.3.2"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
