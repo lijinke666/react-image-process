@@ -12,7 +12,8 @@ module.exports = (env) => {
         entry: path.join(__dirname, '../example/example.js'),
         output: {
             path: path.join(__dirname, "../example/dist"),
-            filename: "build.js"
+            filename: "build.js",
+            publicPath:"./example/dist/"
         },
         //模块加载器
         module: {
@@ -73,7 +74,7 @@ module.exports = (env) => {
             ],
         },
         devServer: {
-            contentBase: path.join(__dirname, "../example/"),
+            contentBase: path.join(__dirname),
             inline: true,
             port: PORT,
             publicPath: "/dist/",
