@@ -31,7 +31,7 @@ class Demo extends React.PureComponent {
         <h1>
           {name}{" "}
           <a
-            href="https://github.com/lijinke666/react-image-process/blob/master/index.html"
+            href="https://github.com/lijinke666/react-image-process/blob/master/example/example.js"
             target="_blank"
           >
             [Source Code]

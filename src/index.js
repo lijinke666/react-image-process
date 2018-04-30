@@ -6,7 +6,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import photoMagician from "photo-magician";
+import PhotoMagician from "photo-magician";
 import { name } from "../package.json";
 
 const MODE_NAME = {
@@ -177,6 +177,7 @@ export default class ReactImageProcess extends PureComponent {
         onComplete && onComplete instanceof Function && onComplete(data);
       }
     } catch (err) {
+      /*eslint-disable no-console */
       console.error(`[${mode}Handler-error]:`, err);
     }
   };
@@ -191,7 +192,7 @@ export default class ReactImageProcess extends PureComponent {
   }
   componentDidMount() {
     this.currentImgNodes = this.node.querySelectorAll("img");
-    this.photoMagician = new photoMagician();
+    this.photoMagician = new PhotoMagician();
     this.imageHandle(this.props);
   }
 }
