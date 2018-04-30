@@ -1,6 +1,6 @@
 {
   "name": "react-image-process",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a image process component for react",
   "main": "lib/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "build:css": "lessc src/index.less assets/index.css && yarn auto",
     "build:js": "babel src -d lib",
     "build": "cross-env NODE_ENV=production yarn run clean && yarn build:js",
-    "build:demo": "webpack --env.mode=PROD --progress --config  ./example/webpack.config.js",
+    "build:demo": "cross-env NODE_ENV=production rimraf example/dist && webpack --env.mode=production --progress --config  ./example/webpack.config.js",
     "demo": "cross-env NODE_ENV=development webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
     "prepare": "yarn build",
     "precommit": "lint-staged",

@@ -7,7 +7,7 @@ const HOST = "localhost"
 const PORT = 8081
 
 module.exports = (env) => {
-    const mode = (env && env.mode) || "DEV"
+    const mode = (env && env.mode) || "development"
     const options = {
         entry: path.join(__dirname, '../example/example.js'),
         output: {
@@ -98,7 +98,7 @@ module.exports = (env) => {
             }),
         ]
     }
-    if (mode === 'PROD') {
+    if (mode === 'production') {
         options.plugins = options.plugins.concat([
             new webpack.optimize.UglifyJsPlugin({
                 output: {

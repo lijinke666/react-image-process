@@ -2,10 +2,12 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import ReactImageMagician from "../src";
 import swal from "sweetalert";
-import { name } from "../package.json";
+import { name,homepage } from "../package.json";
 
-import demoImg from "./demo.jpg";
-import waterMark from "./watermark.png";
+import _demoImg from "./demo.jpg";
+import _waterMark from "./watermark.png";
+const demoImg = process.env.NODE_ENV === "production" ? `${homepage}/example/dist/${_demoImg}` : _demoImg
+const waterMark = process.env.NODE_ENV === "production" ? `${homepage}/example/dist/${waterMark}` : _waterMark
 
 import "./example.less";
 
@@ -31,7 +33,7 @@ class Demo extends React.PureComponent {
         <h1>
           {name}{" "}
           <a
-            href="https://github.com/lijinke666/react-image-process/blob/master/index.html"
+            href="https://github.com/lijinke666/react-image-process/blob/master/example/example.js"
             target="_blank"
           >
             [Source Code]
