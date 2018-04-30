@@ -13,7 +13,7 @@ module.exports = (env) => {
         output: {
             path: path.join(__dirname, "../example/dist"),
             filename: "build.js",
-            publicPath:"./example/dist/"
+            publicPath: mode === "development" ? "" : "./example/dist/"
         },
         //模块加载器
         module: {
