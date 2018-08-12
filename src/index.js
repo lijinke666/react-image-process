@@ -1,13 +1,11 @@
 /**
  * @name react-image-magician
- * @version 0.1.0
+ * @version 0.1.2
  */
 
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import PhotoMagician from "photo-magician";
-import { name } from "../package.json";
 
 const MODE_NAME = {
   base64: "base64",
@@ -43,7 +41,7 @@ export default class ReactImageProcess extends PureComponent {
     mode: MODE_NAME["base64"],
     waterMarkType: WATER_MARK_TYPE_NAME["text"],
     FILTER_TYPE: FILTER_TYPE_NAME["vintage"],
-    waterMark: name,
+    waterMark: mainPrefix,
     rotate: 0,
     quality: 0.92,
     coordinate: [0, 0],
@@ -84,7 +82,6 @@ export default class ReactImageProcess extends PureComponent {
     return (
       <span
         className={classnames(className, _className)}
-        key={_className}
         ref={node => (this.node = node)}
         {...style}
       >
