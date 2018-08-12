@@ -1,9 +1,10 @@
 /**
- * @name react-image-magician
+ * @name react-image-process
  * @version 0.1.2
  */
 
 import React, { PureComponent } from "react";
+import PhotoMagician from "photo-magician"
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
