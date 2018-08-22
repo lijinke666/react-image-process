@@ -1,6 +1,6 @@
 /**
  * @name react-image-process
- * @version 0.1.4
+ * @version 0.1.5
  */
 
 import React, { PureComponent } from "react";
@@ -41,7 +41,7 @@ export default class ReactImageProcess extends PureComponent {
   static defaultProps = {
     mode: MODE_NAME["base64"],
     waterMarkType: WATER_MARK_TYPE_NAME["text"],
-    FILTER_TYPE: FILTER_TYPE_NAME["vintage"],
+    filterType: FILTER_TYPE_NAME["vintage"],
     waterMark: mainPrefix,
     rotate: 0,
     quality: 0.92,

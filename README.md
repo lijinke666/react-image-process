@@ -55,9 +55,65 @@ Support multiple Images
 
 ```jsx
 <ReactImageProcess mode="compress" quality={0.2} onComplete={onComplete}>
-  <img src="YOUR_IMG_URL" alt="compress" className="example-img" />
-  <img src="YOUR_IMG_URL" alt="compress" className="example-img" />
+  <img src="YOUR_IMG_URL" />
+  <img src="YOUR_IMG_URL" />
 </ReactImageProcess>
+```
+
+
+
+> rotate
+
+```jsx
+ <ReactImageProcess mode="rotate" rotate={30}>
+   <img src="YOUR_IMG_URL" />
+ </ReactImageProcess>
+```
+
+> get primary color
+
+```jsx
+ <ReactImageProcess mode="primaryColor" onComplete={(color)=> console.log(color)}>
+   <img src="YOUR_IMG_URL" />
+ </ReactImageProcess>
+```
+
+> waterMark
+
+```jsx
+  <ReactImageProcess
+    mode="waterMark"
+    waterMarkType="image"
+    waterMark={YOUR_WATER_URL}
+    width={60}
+    height={60}
+    opacity={0.7}
+    coordinate={[430, 200]}
+  >
+    <img src="YOUR_IMG_URL" />
+ </ReactImageProcess>
+```
+
+```jsx
+  <ReactImageProcess
+    mode="waterMark"
+    waterMarkType="text"
+    waterMark={'WATER'}
+    fontBold={false}
+    fontSize={20}
+    fontColor="#396"
+    coordinate={[10, 20]}
+  >
+    <img src="YOUR_IMG_URL" />
+ </ReactImageProcess>
+```
+
+> imageFilter
+
+```jsx
+  <ReactImageProcess mode="filter" filterType="vintage">
+   <img src="YOUR_IMG_URL" />
+ </ReactImageProcess>
 ```
 
 ## API

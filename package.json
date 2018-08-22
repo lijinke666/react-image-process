@@ -1,6 +1,6 @@
 {
   "name": "react-image-process",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "a image process component for react",
   "main": "lib/index.js",
   "scripts": {

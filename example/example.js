@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-import ReactImageMagician from "../src";
+import ReactImageProcess from "../src";
 import swal from "sweetalert";
 import { name } from "../package.json";
 
@@ -43,7 +43,7 @@ class Demo extends React.PureComponent {
         <img src={demoImg} alt="clip" className="example-img" />
 
         <h2>base64</h2>
-        <ReactImageMagician mode="base64" onComplete={onComplete}>
+        <ReactImageProcess mode="base64" onComplete={onComplete}>
           <img
             src={demoImg}
             alt="base64"
@@ -58,10 +58,10 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
+        </ReactImageProcess>
 
         <h2>clip</h2>
-        <ReactImageMagician
+        <ReactImageProcess
           mode="clip"
           scale={1.0}
           coordinate={[[200, 200], [300, 300]]}
@@ -82,8 +82,8 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
-        <ReactImageMagician
+        </ReactImageProcess>
+        <ReactImageProcess
           mode="clip"
           scale={2}
           coordinate={[[200, 200], [600, 600]]}
@@ -103,10 +103,10 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
+        </ReactImageProcess>
 
         <h2>compress</h2>
-        <ReactImageMagician mode="compress" quality={0.1}>
+        <ReactImageProcess mode="compress" quality={0.1}>
           <img
             src={demoImg}
             alt="compress"
@@ -122,8 +122,8 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
-        <ReactImageMagician mode="compress" quality={0.01}>
+        </ReactImageProcess>
+        <ReactImageProcess mode="compress" quality={0.01}>
           <img
             src={demoImg}
             alt="compress"
@@ -139,10 +139,10 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
+        </ReactImageProcess>
 
         <h2>rotate</h2>
-        <ReactImageMagician mode="rotate" rotate={30}>
+        <ReactImageProcess mode="rotate" rotate={30}>
           <img
             src={demoImg}
             alt="rotate"
@@ -157,10 +157,10 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
+        </ReactImageProcess>
 
         <h2>primaryColor</h2>
-        <ReactImageMagician
+        <ReactImageProcess
           mode="primaryColor"
           onComplete={this.getPrimaryColorComplete}
         >
@@ -178,11 +178,11 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
+        </ReactImageProcess>
         <div style={{textAlign:"center"}}>{primaryColor}</div>
 
         <h2>waterMark</h2>
-        <ReactImageMagician
+        <ReactImageProcess
           mode="waterMark"
           waterMarkType="image"
           waterMark={waterMark}
@@ -211,8 +211,8 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
-        <ReactImageMagician
+        </ReactImageProcess>
+        <ReactImageProcess
           mode="waterMark"
           waterMarkType="text"
           waterMark={name}
@@ -241,10 +241,10 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
+        </ReactImageProcess>
 
         <h2>imageFilter</h2>
-        <ReactImageMagician mode="filter" filterType="vintage">
+        <ReactImageProcess mode="filter" filterType="vintage">
           <img
             src={demoImg}
             alt="vintage"
@@ -260,8 +260,8 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
-        <ReactImageMagician mode="filter" filterType="blackWhite">
+        </ReactImageProcess>
+        <ReactImageProcess mode="filter" filterType="blackWhite">
           <img
             src={demoImg}
             alt="blackWhite"
@@ -277,8 +277,8 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
-        <ReactImageMagician mode="filter" filterType="relief">
+        </ReactImageProcess>
+        <ReactImageProcess mode="filter" filterType="relief">
           <img
             src={demoImg}
             alt="relief"
@@ -294,8 +294,8 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
-        <ReactImageMagician mode="filter" filterType="blur">
+        </ReactImageProcess>
+        <ReactImageProcess mode="filter" filterType="blur">
           <img
             src={demoImg}
             alt="blur"
@@ -311,7 +311,7 @@ class Demo extends React.PureComponent {
               })
             }
           />
-        </ReactImageMagician>
+        </ReactImageProcess>
       </Fragment>
     );
   }
