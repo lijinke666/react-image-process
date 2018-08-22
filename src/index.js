@@ -1,6 +1,6 @@
 /**
  * @name react-image-process
- * @version 0.1.5
+ * @version 0.1.6
  */
 
 import React, { PureComponent } from "react";
