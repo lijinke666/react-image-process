@@ -1,29 +1,29 @@
 {
   "name": "react-image-process",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "a image process component for react",
   "main": "lib/index.js",
+  "typing": "index.d.ts",
   "scripts": {
     "start": "yarn demo",
     "test": "jest --no-cache __tests__/tests",
     "clean": "rimraf lib && rimraf assets",
-    "auto": "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
+    "auto":
+      "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
     "build:css": "lessc src/index.less assets/index.css && yarn auto",
     "build:js": "babel src -d lib",
     "build": "cross-env NODE_ENV=production && yarn run clean && yarn build:js",
-    "build:demo": "cross-env NODE_ENV=production rimraf example/dist && webpack --env.mode=production --progress --config  ./example/webpack.config.js",
-    "demo": "cross-env NODE_ENV=development && webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
+    "build:demo":
+      "cross-env NODE_ENV=production rimraf example/dist && webpack --env.mode=production --progress --config  ./example/webpack.config.js",
+    "demo":
+      "cross-env NODE_ENV=development && webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
     "prepare": "yarn build",
     "precommit": "lint-staged",
     "lint": "prettier --write \"src/**/*.js\" && eslint_d --fix src"
   },
   "pre-commit": "lint",
   "lint-staged": {
-    "src/**/*.js": [
-      "prettier --write",
-      "eslint_d --fix",
-      "git add"
-    ]
+    "src/**/*.js": ["prettier --write", "eslint_d --fix", "git add"]
   },
   "author": "Jinke.Li <1359518268@qq.com>",
   "repository": {
@@ -55,7 +55,7 @@
   ],
   "dependencies": {
     "classnames": "^2.2.5",
-    "photo-magician": "^0.2.0",
+    "photo-magician": "^0.3.0",
     "prop-types": "^15.6.0"
   },
   "devDependencies": {
@@ -80,9 +80,8 @@
     "babel-preset-stage-0": "6.x",
     "babel-preset-stage-1": "^6.24.1",
     "babel-runtime": "^6.23.0",
-    "copy-webpack-plugin": "latest",
     "cross-env": "^5.1.4",
-    "css-loader": "~0.23.0",
+    "css-loader": "~0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
@@ -92,68 +91,47 @@
     "eslint_d": "^5.3.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
-    "html-loader": "^0.4.4",
-    "html-webpack-plugin": "^2.28.0",
-    "imagemin-webpack-plugin": "^1.4.4",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^22.4.3",
     "jest-environment-jsdom": "^22.4.3",
     "jsdom": "^11.9.0",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "lint-staged": "^7.0.5",
-    "open-browser-webpack-plugin": "0.0.2",
+    "open-browser-webpack-plugin": "0.0.5",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "postcss": "^6.0.12",
     "postcss-cli": "^4.1.1",
     "postcss-loader": "^1.2.2",
     "power-assert": "^1.5.0",
     "prettier": "^1.12.1",
-    "rc-button": "^0.1.5",
-    "rc-message": "^1.3.3",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-hot-loader": "^4.1.2",
-    "react-jinke-music-player": "latest",
     "react-loader": "^2.4.0",
-    "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.11.0",
     "rimraf": "^2.6.0",
     "style-loader": "~0.13.0",
     "sweetalert": "^2.1.0",
     "url-loader": "^0.5.8",
-    "webpack": "^2.7.0",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.1.11"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json"
-    ],
-    "transformIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "modulePathIgnorePatterns": [
-      "/.history/"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      ".",
-      "src",
-      "src/shared"
-    ],
+    "moduleFileExtensions": ["js", "jsx", "json"],
+    "transformIgnorePatterns": ["/node_modules/"],
+    "modulePathIgnorePatterns": ["/.history/"],
+    "moduleDirectories": ["node_modules", ".", "src", "src/shared"],
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     },
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests__/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__tests__/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__tests__/__mocks__/styleMock.js"
     }
   }

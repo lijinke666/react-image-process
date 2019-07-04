@@ -35,19 +35,19 @@ online example : [https://lijinke666.github.io/react-image-process/](https://lij
 ## Usage
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import ReactImageProcess from "react-image-process";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactImageProcess from 'react-image-process';
 
 const onComplete = data => {
-  console.log("data:", data);
+  console.log('data:', data);
 };
 
 ReactDOM.render(
   <ReactImageProcess mode="base64" onComplete={onComplete}>
     <img src="YOUR_IMG_URL" />
   </ReactImageProcess>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 ```
 
@@ -60,60 +60,58 @@ Support multiple Images
 </ReactImageProcess>
 ```
 
-
-
 > rotate
 
 ```jsx
- <ReactImageProcess mode="rotate" rotate={30}>
-   <img src="YOUR_IMG_URL" />
- </ReactImageProcess>
+<ReactImageProcess mode="rotate" rotate={30}>
+  <img src="YOUR_IMG_URL" />
+</ReactImageProcess>
 ```
 
 > get primary color
 
 ```jsx
- <ReactImageProcess mode="primaryColor" onComplete={(color)=> console.log(color)}>
-   <img src="YOUR_IMG_URL" />
- </ReactImageProcess>
+<ReactImageProcess mode="primaryColor" onComplete={color => console.log(color)}>
+  <img src="YOUR_IMG_URL" />
+</ReactImageProcess>
 ```
 
 > waterMark
 
 ```jsx
-  <ReactImageProcess
-    mode="waterMark"
-    waterMarkType="image"
-    waterMark={YOUR_WATER_URL}
-    width={60}
-    height={60}
-    opacity={0.7}
-    coordinate={[430, 200]}
-  >
-    <img src="YOUR_IMG_URL" />
- </ReactImageProcess>
+<ReactImageProcess
+  mode="waterMark"
+  waterMarkType="image"
+  waterMark={YOUR_WATER_URL}
+  width={60}
+  height={60}
+  opacity={0.7}
+  coordinate={[430, 200]}
+>
+  <img src="YOUR_IMG_URL" />
+</ReactImageProcess>
 ```
 
 ```jsx
-  <ReactImageProcess
-    mode="waterMark"
-    waterMarkType="text"
-    waterMark={'WATER'}
-    fontBold={false}
-    fontSize={20}
-    fontColor="#396"
-    coordinate={[10, 20]}
-  >
-    <img src="YOUR_IMG_URL" />
- </ReactImageProcess>
+<ReactImageProcess
+  mode="waterMark"
+  waterMarkType="text"
+  waterMark={'WATER'}
+  fontBold={false}
+  fontSize={20}
+  fontColor="#396"
+  coordinate={[10, 20]}
+>
+  <img src="YOUR_IMG_URL" />
+</ReactImageProcess>
 ```
 
 > imageFilter
 
 ```jsx
-  <ReactImageProcess mode="filter" filterType="vintage">
-   <img src="YOUR_IMG_URL" />
- </ReactImageProcess>
+<ReactImageProcess mode="filter" filterType="vintage">
+  <img src="YOUR_IMG_URL" />
+</ReactImageProcess>
 ```
 
 ## API
@@ -122,6 +120,7 @@ Support multiple Images
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------- |
 | mode          | can be set to `base64` `clip` `compress` `rotate` `waterMark` `filter` `primaryColor`                                            | `string`               | `base64`               |
 | onComplete    | The callback after trans complete conversion                                                                                     | function(base64Data){} | `-`                    |
+| outputType    | image data output type of `blob`                                                                                                 | `dataUrl`              | `string`               | `dataUrl` |
 | scale         | When the mode is equal to 'clip', the zoom scale of the image.                                                                   | `number`               | `1.0`                  |
 | coordinate    | When the mode is equal to 'clip', coordinate of the image. like `[[x1,y1],[x2,y2]]`, if mode equal to `waterMark` like `[x1,y1]` | `number[]`             | `-`                    |
 | quality       | When the mode is equal to 'compress', quality of the image.                                                                      | `number`               | `0.92`                 |
@@ -146,31 +145,41 @@ npm start
 
 ## Properties
 
-```jsx
-  static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-    mode: PropTypes.oneOf(MODE),
-    waterMarkType: PropTypes.oneOf(WATER_MARK_TYPE),
-    filterType: PropTypes.oneOf(FILTER_TYPE),
-    waterMark: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.node
-    ]),
-    scale: PropTypes.number,
-    rotate: PropTypes.number,
-    quality: PropTypes.number,
-    width:PropTypes.number,
-    height:PropTypes.number,
-    fontColor:PropTypes.string,
-    fontSize: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    fontBold:PropTypes.bool,
-    coordinate: PropTypes.array,
-    onComplete: PropTypes.func
-  };
+```ts
+export type ReactImageProcessMode =
+  | 'base64'
+  | 'clip'
+  | 'compress'
+  | 'rotate'
+  | 'waterMark'
+  | 'filter'
+  | 'primaryColor';
+
+export type ReactImageProcessWaterMarkType = 'image' | 'text';
+export type ReactImageProcessFilterType =
+  | 'vintage'
+  | 'blackWhite'
+  | 'relief'
+  | 'blur';
+export type ReactImageProcessOutputType = 'blob' | 'dataUrl';
+
+export interface ReactImageProcessProps {
+  mode: ReactImageProcessMode;
+  waterMarkType: ReactImageProcessWaterMarkType;
+  filterType: ReactImageProcessFilterType;
+  outputType: ReactImageProcessOutputType;
+  waterMark: string;
+  rotate: number;
+  quality: number;
+  coordinate: number[];
+  width: number;
+  height: number;
+  opacity: number;
+  fontColor: number;
+  fontSize: number;
+  fontBold: number;
+  onComplete: (data: Blob | string) => void;
+}
 ```
 
 ## License

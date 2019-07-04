@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
-import ReactDOM from "react-dom";
-import ReactImageProcess from "../src";
-import swal from "sweetalert";
-import { name } from "../package.json";
+import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
+import ReactImageProcess from '../src';
+import swal from 'sweetalert';
+import { name } from '../package.json';
 
-import demoImg from "./demo.jpg";
-import waterMark from "./watermark.png";
+import demoImg from './demo.jpg';
+import waterMark from './watermark.png';
 
-import "./example.less";
+import './example.less';
 
 const onComplete = data => {
-  console.log("data:", data);
+  console.log('data:', data);
 };
 
 class Demo extends React.PureComponent {
@@ -18,10 +18,10 @@ class Demo extends React.PureComponent {
     super(props);
   }
   state = {
-    primaryColor: "transparent"
+    primaryColor: 'transparent'
   };
   getPrimaryColorComplete = primaryColor => {
-    console.log("primaryColor:", primaryColor);
+    console.log('primaryColor:', primaryColor);
     this.setState({ primaryColor });
   };
   render() {
@@ -29,7 +29,7 @@ class Demo extends React.PureComponent {
     return (
       <Fragment>
         <h1>
-          {name}{" "}
+          {name}{' '}
           <a
             href="https://github.com/lijinke666/react-image-process/blob/master/example/example.js"
             target="_blank"
@@ -43,7 +43,11 @@ class Demo extends React.PureComponent {
         <img src={demoImg} alt="clip" className="example-img" />
 
         <h2>base64</h2>
-        <ReactImageProcess mode="base64" onComplete={onComplete}>
+        <ReactImageProcess
+          mode="base64"
+          outputType="blob"
+          onComplete={onComplete}
+        >
           <img
             src={demoImg}
             alt="base64"
@@ -51,7 +55,7 @@ class Demo extends React.PureComponent {
             onClick={() =>
               swal({
                 text: `
-              { 
+              {
                 mode:'base64'
               }
             `
@@ -179,7 +183,7 @@ class Demo extends React.PureComponent {
             }
           />
         </ReactImageProcess>
-        <div style={{textAlign:"center"}}>{primaryColor}</div>
+        <div style={{ textAlign: 'center' }}>{primaryColor}</div>
 
         <h2>waterMark</h2>
         <ReactImageProcess
@@ -317,4 +321,4 @@ class Demo extends React.PureComponent {
   }
 }
 
-ReactDOM.render(<Demo />, document.getElementById("root"));
+ReactDOM.render(<Demo />, document.getElementById('root'));

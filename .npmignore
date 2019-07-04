@@ -13,3 +13,4 @@ __tests__
 postcss.config.json
 watermark.png
 demo.jpg
+yarn.lock
