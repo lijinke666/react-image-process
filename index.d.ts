@@ -18,21 +18,21 @@ export type ReactImageProcessFilterType =
 export type ReactImageProcessOutputType = 'blob' | 'dataUrl';
 
 export interface ReactImageProcessProps {
-  mode: ReactImageProcessMode;
-  waterMarkType: ReactImageProcessWaterMarkType;
-  filterType: ReactImageProcessFilterType;
-  outputType: ReactImageProcessOutputType;
-  waterMark: string;
-  rotate: number;
-  quality: number;
-  coordinate: number[];
-  width: number;
-  height: number;
-  opacity: number;
-  fontColor: number;
-  fontSize: number;
-  fontBold: number;
-  onComplete: (data: Blob | string) => void;
+  mode?: ReactImageProcessMode;
+  waterMarkType?: ReactImageProcessWaterMarkType;
+  filterType?: ReactImageProcessFilterType;
+  outputType?: ReactImageProcessOutputType;
+  waterMark?: string;
+  rotate?: number;
+  quality?: number;
+  coordinate?: number[];
+  width?: number;
+  height?: number;
+  opacity?: number;
+  fontColor?: number;
+  fontSize?: number;
+  fontBold?: number;
+  onComplete?: (data: Blob | string) => void;
 }
 
 export default class ReactImageProcess extends React.PureComponent<

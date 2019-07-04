@@ -1,6 +1,6 @@
 {
   "name": "react-image-process",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a image process component for react",
   "main": "lib/index.js",
   "typing": "index.d.ts",
@@ -8,22 +8,23 @@
     "start": "yarn demo",
     "test": "jest --no-cache __tests__/tests",
     "clean": "rimraf lib && rimraf assets",
-    "auto":
-      "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
+    "auto": "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
     "build:css": "lessc src/index.less assets/index.css && yarn auto",
     "build:js": "babel src -d lib",
     "build": "cross-env NODE_ENV=production && yarn run clean && yarn build:js",
-    "build:demo":
-      "cross-env NODE_ENV=production rimraf example/dist && webpack --env.mode=production --progress --config  ./example/webpack.config.js",
-    "demo":
-      "cross-env NODE_ENV=development && webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
+    "build:demo": "cross-env NODE_ENV=production rimraf example/dist && webpack --env.mode=production --progress --config  ./example/webpack.config.js",
+    "demo": "cross-env NODE_ENV=development && webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
     "prepare": "yarn build",
     "precommit": "lint-staged",
     "lint": "prettier --write \"src/**/*.js\" && eslint_d --fix src"
   },
   "pre-commit": "lint",
   "lint-staged": {
-    "src/**/*.js": ["prettier --write", "eslint_d --fix", "git add"]
+    "src/**/*.js": [
+      "prettier --write",
+      "eslint_d --fix",
+      "git add"
+    ]
   },
   "author": "Jinke.Li <1359518268@qq.com>",
   "repository": {
@@ -119,19 +120,35 @@
     "webpack-dev-server": "^3.1.11"
   },
   "jest": {
-    "moduleFileExtensions": ["js", "jsx", "json"],
-    "transformIgnorePatterns": ["/node_modules/"],
-    "modulePathIgnorePatterns": ["/.history/"],
-    "moduleDirectories": ["node_modules", ".", "src", "src/shared"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "modulePathIgnorePatterns": [
+      "/.history/"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      ".",
+      "src",
+      "src/shared"
+    ],
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     },
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/__tests__/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests__/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__tests__/__mocks__/styleMock.js"
     }
   }
