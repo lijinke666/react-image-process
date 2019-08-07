@@ -3,10 +3,10 @@
  * @version 0.2.0
  */
 
-import React, { PureComponent } from 'react';
-import PhotoMagician from 'photo-magician';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import React, { PureComponent } from 'react'
+import PhotoMagician from 'photo-magician'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 export const MODE_TYPE = {
   base64: 'base64',
@@ -16,35 +16,35 @@ export const MODE_TYPE = {
   waterMark: 'waterMark',
   filter: 'filter',
   primaryColor: 'primaryColor'
-};
+}
 
 export const WATER_MARK_TYPE = {
   image: 'image',
   text: 'text'
-};
+}
 
 export const FILTER_TYPE = {
   vintage: 'vintage',
   blackWhite: 'blackWhite',
   relief: 'relief',
   blur: 'blur'
-};
+}
 
 export const OUTPUT_TYPE = {
   blob: 'blob',
   dataUrl: 'dataUrl'
-};
+}
 
-const MODE = Object.values(MODE_TYPE);
-const WATER_MARK = Object.values(WATER_MARK_TYPE);
-const FILTER = Object.values(FILTER_TYPE);
-const OUTPUT = Object.values(OUTPUT_TYPE);
+const MODE = Object.values(MODE_TYPE)
+const WATER_MARK = Object.values(WATER_MARK_TYPE)
+const FILTER = Object.values(FILTER_TYPE)
+const OUTPUT = Object.values(OUTPUT_TYPE)
 
-const mainPrefix = 'react-image-process';
+const mainPrefix = 'react-image-process'
 
 export default class ReactImageProcess extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
   }
   static defaultProps = {
     mode: MODE_TYPE['base64'],
@@ -62,7 +62,7 @@ export default class ReactImageProcess extends PureComponent {
     fontSize: 20,
     fontBold: true,
     onComplete: () => {}
-  };
+  }
   static propTypes = {
     mode: PropTypes.oneOf(MODE),
     waterMarkType: PropTypes.oneOf(WATER_MARK),
@@ -83,11 +83,11 @@ export default class ReactImageProcess extends PureComponent {
     fontBold: PropTypes.bool,
     coordinate: PropTypes.array,
     onComplete: PropTypes.func
-  };
+  }
   render() {
-    const { mode, children, style, className } = this.props;
+    const { mode, children, style, className } = this.props
 
-    const _className = `${mainPrefix}-${mode}`;
+    const _className = `${mainPrefix}-${mode}`
 
     return (
       <span
@@ -97,7 +97,7 @@ export default class ReactImageProcess extends PureComponent {
       >
         {children}
       </span>
-    );
+    )
   }
   /**
    * @description get base64 data of the image
@@ -106,8 +106,8 @@ export default class ReactImageProcess extends PureComponent {
    * @return base64 data
    */
   base64Handler = async (cover, params) => {
-    return await this.photoMagician.toBase64Url({ cover, ...params });
-  };
+    return await this.photoMagician.toBase64Url({ cover, ...params })
+  }
 
   /**
    * @description cut clip of the image
@@ -118,8 +118,8 @@ export default class ReactImageProcess extends PureComponent {
    * @return image node
    */
   clipHandler = async (cover, params) => {
-    return await this.photoMagician.clipImage({ cover, ...params });
-  };
+    return await this.photoMagician.clipImage({ cover, ...params })
+  }
   /**
    * @description compress of the image
    * @param {Object} options
@@ -128,16 +128,16 @@ export default class ReactImageProcess extends PureComponent {
    * @return base64 data
    */
   compressHandler = async (cover, params) => {
-    return await this.photoMagician.compressImage({ cover, ...params });
-  };
+    return await this.photoMagician.compressImage({ cover, ...params })
+  }
   /**
    * @description Rotate the image
    * @param {String | Object} cover 图片地址或节点
    * @param {Number} rotate 旋转比例 (0 -360 ) °
    */
   rotateHandler = async (cover, params) => {
-    return await this.photoMagician.rotateImage({ cover, ...params });
-  };
+    return await this.photoMagician.rotateImage({ cover, ...params })
+  }
   /**
    * @param {Object} options
    * @param {String | Object} options.cover
@@ -148,15 +148,15 @@ export default class ReactImageProcess extends PureComponent {
       cover,
       ...params,
       mode: filterType
-    });
-  };
+    })
+  }
   waterMarkHandler = async (cover, { waterMarkType, ...params }) => {
     return await this.photoMagician.addWaterMark({
       cover,
       ...params,
       mode: waterMarkType
-    });
-  };
+    })
+  }
   /**
    * @description get primary color of the image
    * @param {Object} options
@@ -164,15 +164,15 @@ export default class ReactImageProcess extends PureComponent {
    * @return primaryColor
    */
   primaryColorHandler = async cover => {
-    return await this.photoMagician.getPrimaryColor({ cover });
-  };
+    return await this.photoMagician.getPrimaryColor({ cover })
+  }
   baseHandler = async (mode, options) => {
     try {
-      const { onComplete } = this.props;
-      const { children, ...params } = options;
+      const { onComplete } = this.props
+      const { children, ...params } = options
       const images = Array.isArray(children)
         ? [...options.children]
-        : [options.children];
+        : [options.children]
 
       for (let [
         i,
@@ -180,38 +180,48 @@ export default class ReactImageProcess extends PureComponent {
           props: { src }
         }
       ] of images.entries()) {
-        if (!src) continue;
-        const data = await this[`${mode}Handler`](src, params);
+        if (!src) continue
+        const data = await this[`${mode}Handler`](src, params)
         if (mode !== MODE_TYPE['primaryColor']) {
           if (params.outputType === OUTPUT_TYPE.dataUrl) {
-            return (this.currentImgNodes[i].src = data);
+            return (this.currentImgNodes[i].src = data)
           }
-          this.currentImgNodes[i].src = URL.createObjectURL(data);
+          this.currentImgNodes[i].src = URL.createObjectURL(data)
           this.currentImgNodes[i].onload = () => {
-            URL.revokeObjectURL(data);
-          };
+            URL.revokeObjectURL(data)
+          }
         }
         if (onComplete && onComplete instanceof Function) {
-          onComplete(data);
+          onComplete(data)
         }
       }
     } catch (err) {
       /*eslint-disable no-console */
-      console.error(`[${mode}Handler-error]:`, err);
+      console.error(`[${mode}Handler-error]:`, err)
     }
-  };
+  }
   //图片处理
   imageHandle = async ({ mode, ...options }) => {
-    await this.baseHandler(MODE_TYPE[mode], options);
-  };
+    await this.baseHandler(MODE_TYPE[mode], options)
+  }
   componentWillUnmount() {
-    this.photoMagician = undefined;
-    this.currentImgNodes = undefined;
-    this.node = undefined;
+    this.photoMagician = undefined
+    this.currentImgNodes = undefined
+    this.node = undefined
   }
   componentDidMount() {
-    this.currentImgNodes = this.node.querySelectorAll('img');
-    this.photoMagician = new PhotoMagician();
-    this.imageHandle(this.props);
+    this.currentImgNodes = this.node.querySelectorAll('img')
+    this.photoMagician = new PhotoMagician()
+    this.imageHandle(this.props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      Object.keys(nextProps).some(
+        key => !Object.is(nextProps[key], this.props[key])
+      )
+    ) {
+      this.imageHandle(nextProps)
+    }
   }
 }

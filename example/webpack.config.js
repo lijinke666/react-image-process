@@ -1,11 +1,11 @@
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const PORT = 8081;
+const PORT = 8083
 
 module.exports = env => {
-  const mode = (env && env.mode) || 'development';
+  const mode = (env && env.mode) || 'development'
   const options = {
     entry: path.join(__dirname, '../example/example.js'),
     output: {
@@ -103,6 +103,6 @@ module.exports = env => {
         hash: true //添加hash码
       })
     ]
-  };
-  return options;
-};
+  }
+  return options
+}
