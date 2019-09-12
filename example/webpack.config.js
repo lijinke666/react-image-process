@@ -7,6 +7,7 @@ const PORT = 8083
 module.exports = env => {
   const mode = (env && env.mode) || 'development'
   const options = {
+    mode,
     entry: path.join(__dirname, '../example/example.js'),
     output: {
       path: path.join(__dirname, '../example/dist'),

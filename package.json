@@ -1,6 +1,6 @@
 {
   "name": "react-image-process",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "a image process component for react",
   "main": "lib/index.js",
   "typing": "index.d.ts",
@@ -57,7 +57,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "photo-magician": "^0.3.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "babel-runtime": "^6.23.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -80,7 +81,6 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "6.x",
     "babel-preset-stage-1": "^6.24.1",
-    "babel-runtime": "^6.23.0",
     "cross-env": "^5.1.4",
     "css-loader": "~0.28.11",
     "enzyme": "^3.3.0",
